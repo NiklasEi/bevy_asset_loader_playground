@@ -14,12 +14,18 @@ default = [
     "bevy/bevy_wgpu",
     "bevy/render",
     "bevy/png",
-    "bevy/bevy_audio",
-    "bevy/vorbis"
 ]
+
+working = [
+    "bevy/bevy_audio",
+    "bevy/vorbis"]
+
+broken = [
+    "bevy_kira_audio"]
 
 [dependencies]
 bevy = { version = "0.5.0", default-features = false }
 winit = "0.24.0"
 
 bevy_asset_loader = {path = "../bevy_asset_loader/bevy_asset_loader"}
+bevy_kira_audio = {version = "0.4.0", features = ["ogg"], optional = true}
