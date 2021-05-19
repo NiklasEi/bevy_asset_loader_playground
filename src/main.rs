@@ -2,6 +2,7 @@ mod player;
 
 use bevy::prelude::*;
 use bevy_asset_loader::{AssetLoaderPlugin, AssetCollection};
+use bevy::audio::{Audio, AudioSource};
 use crate::player::PlayerPlugin;
 
 fn main() {
@@ -14,7 +15,10 @@ fn main() {
         GameState::Loading,
         GameState::Menu,
     ))
-        .add_system_set(SystemSet::on_enter(GameState::Menu).with_system(play_audio.system())).run();
+        .add_system_set(
+            SystemSet::on_enter(GameState::Menu)
+                .with_system(play_audio.system()))
+        .run();
 }
 
 fn play_audio(assets: Res<GameAssets>, audio: Res<Audio>, mut state: ResMut<State<GameState>>) {
