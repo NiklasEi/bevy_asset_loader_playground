@@ -472,14 +472,11 @@ dependencies = [
 [[package]]
 name = "bevy_kira_audio"
 version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "951bf582ef28c2d50f830837ac7ce35d2f0872fe5ef07a71ede5f068b259a7c9"
 dependencies = [
  "anyhow",
  "bevy",
  "bevy_reflect",
  "kira",
- "lewton",
  "parking_lot",
 ]
 
@@ -1996,6 +1993,7 @@ dependencies = [
  "getrandom",
  "indexmap",
  "instant",
+ "lewton",
  "rand",
  "ringbuf",
  "thiserror",

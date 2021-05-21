@@ -23,6 +23,7 @@ fn spawn_camera(mut commands: Commands) {
 fn spawn_player(
     mut commands: Commands,
     game_assets: Res<GameAssets>,
+    asset_server: Res<AssetServer>,
     mut materials: ResMut<Assets<ColorMaterial>>,
 ) {
     println!("spawning");
