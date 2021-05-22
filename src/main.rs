@@ -6,7 +6,6 @@ use bevy::asset::LoadState;
 #[cfg(not(feature = "broken"))]
 use bevy::audio::{Audio, AudioSource};
 use bevy::prelude::*;
-use bevy_asset_loader::{AssetCollection, AssetLoaderPlugin};
 #[cfg(feature = "broken")]
 #[cfg(not(feature = "working"))]
 use bevy_kira_audio::{Audio, AudioPlugin, AudioSource};
@@ -17,10 +16,6 @@ fn main() {
     app.add_state(GameState::Loading)
         .add_plugins(DefaultPlugins)
         .add_plugin(PlayerPlugin)
-        // .add_plugin(AssetLoaderPlugin::<GameAssets, _>::new(
-        //     GameState::Loading,
-        //     GameState::Playing,
-        // ))
         .add_system_set(SystemSet::on_enter(GameState::Playing).with_system(play_audio.system()))
         .add_system_set(SystemSet::on_enter(GameState::Loading).with_system(load.system()))
         .add_system_set(SystemSet::on_update(GameState::Loading).with_system(check.system()));
@@ -32,22 +27,18 @@ fn main() {
     app.run();
 }
 
-fn play_audio(assets: Res<GameAssets>, audio: Res<Audio>, mut state: ResMut<State<GameState>>) {
+fn play_audio(assets: Res<GameAssets>, audio: Res<Audio>) {
     audio.play(assets.flying.clone());
 }
 
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 enum GameState {
     Loading,
-    Menu,
     Playing,
 }
 
-// #[derive(AssetCollection)]
 pub struct GameAssets {
-    // #[asset(path = "textures/bevy.png")]
     pub texture_bevy: Handle<Texture>,
-    // #[asset(path = "audio/flying.ogg")]
     pub flying: Handle<AudioSource>,
 }
 
