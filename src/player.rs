@@ -1,5 +1,5 @@
-use crate::GameAssets;
 use crate::GameState;
+use crate::TextureAssets;
 use bevy::prelude::*;
 
 pub struct PlayerPlugin;
@@ -22,7 +22,7 @@ fn spawn_camera(mut commands: Commands) {
 
 fn spawn_player(
     mut commands: Commands,
-    game_assets: Res<GameAssets>,
+    game_assets: Res<TextureAssets>,
     mut materials: ResMut<Assets<ColorMaterial>>,
 ) {
     println!("spawning");
