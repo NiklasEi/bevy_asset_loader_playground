@@ -23,12 +23,14 @@ fn spawn_camera(mut commands: Commands) {
 fn spawn_player(
     mut commands: Commands,
     textures: Res<TextureAssets>,
+    texture_assets: Res<Assets<Texture>>,
     asset_server: Res<AssetServer>,
     mut materials: ResMut<Assets<ColorMaterial>>,
 ) {
     println!(
-        "spawning texture; handle status: {:?}",
-        asset_server.get_load_state(textures.bevy.id)
+        "spawning texture; handle status: {:?}, asset is some? {}",
+        asset_server.get_load_state(textures.bevy.id),
+        texture_assets.get(textures.bevy.clone()).is_some()
     );
     commands
         .spawn_bundle(SpriteBundle {
