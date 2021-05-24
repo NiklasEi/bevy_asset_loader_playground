@@ -22,13 +22,17 @@ fn spawn_camera(mut commands: Commands) {
 
 fn spawn_player(
     mut commands: Commands,
-    game_assets: Res<TextureAssets>,
+    textures: Res<TextureAssets>,
+    asset_server: Res<AssetServer>,
     mut materials: ResMut<Assets<ColorMaterial>>,
 ) {
-    println!("spawning");
+    println!(
+        "spawning texture; handle status: {:?}",
+        asset_server.get_load_state(textures.bevy.id)
+    );
     commands
         .spawn_bundle(SpriteBundle {
-            material: materials.add(game_assets.texture_bevy.clone().into()),
+            material: materials.add(textures.bevy.clone().into()),
             transform: Transform::from_translation(Vec3::new(0., 0., 1.)),
             ..Default::default()
         })
